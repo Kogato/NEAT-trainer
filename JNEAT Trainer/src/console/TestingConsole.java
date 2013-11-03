@@ -35,8 +35,8 @@ public class TestingConsole extends Console {
 			Genome testGenome = createGenome(starterGenomeFile);
 			
 			//Read training data
-			double[][] inputs = readValues(inputFileName);
-			double[][] outputs = readValues(outputFileName);
+			double[][] inputs = readValues(inputFileNameTesting);
+			double[][] outputs = readValues(outputFileNameTesting);
 							
 			//Create evaluator		
 			MySupervisedEvaluator evaluator = new MySupervisedEvaluator(inputs, outputs, errorThreshold);

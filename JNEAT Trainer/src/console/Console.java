@@ -26,8 +26,11 @@ public class Console {
 				
 		String lastPopulationInfoFileName;
 		
-		String inputFileName;
-		String outputFileName;
+		String inputFileNameTraining;
+		String outputFileNameTraining;
+		
+		String inputFileNameTesting;
+		String outputFileNameTesting;
 		
 		public Console(String nameOfExperiment, int maxNumberOfGenerations, boolean stopOnFirstGoodOrganism, double errorThreshold){
 			this.nameOfExperiment = nameOfExperiment;
@@ -49,8 +52,11 @@ public class Console {
 					
 			lastPopulationInfoFileName = dataFolder + "\\population.LastGeneration";
 			
-			inputFileName = dataFolder + "\\Training data\\" + nameOfExperiment + "\\inputvalues.txt";
-			outputFileName= dataFolder + "\\Training data\\" + nameOfExperiment + "\\outputvalues.txt";
+			inputFileNameTraining = dataFolder + "\\Training data\\" + nameOfExperiment + "\\Training\\inputvalues.txt";
+			outputFileNameTraining= dataFolder + "\\Training data\\" + nameOfExperiment + "\\Training\\outputvalues.txt";
+			
+			inputFileNameTesting = dataFolder + "\\Training data\\" + nameOfExperiment + "\\Testing\\inputvalues.txt";
+			outputFileNameTesting= dataFolder + "\\Training data\\" + nameOfExperiment + "\\Testing\\outputvalues.txt";
 		}
 		
 		protected static double[][] readValues(String filename){

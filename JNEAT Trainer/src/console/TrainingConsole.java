@@ -28,8 +28,8 @@ public class TrainingConsole extends Console {
 	
 	public void train(){
 		//Read training data
-		double[][] inputs = readValues(inputFileName);
-		double[][] outputs = readValues(outputFileName);
+		double[][] inputs = readValues(inputFileNameTraining);
+		double[][] outputs = readValues(outputFileNameTraining);
 				
 		//Create evaluator		
 		MySupervisedEvaluator evaluator = new MySupervisedEvaluator(inputs, outputs, errorThreshold);
