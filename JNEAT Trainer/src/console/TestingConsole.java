@@ -53,7 +53,7 @@ public class TestingConsole extends Console {
 	private Genome createGenome (IOseq starterGenomeFile){
 		String curWord;
 		
-		System.out.println("Read start genome");
+		System.out.println("Read genome");
 			
 		//Read file
 		String line = starterGenomeFile.IOseqRead();
