@@ -11,7 +11,7 @@ import training.evaluators.MySupervisedEvaluator;
 public class TestingConsole extends Console {
 
 	public static void main(String[] args) {
-		String nameOfExperiment ="XOR 3 inputs";
+		String nameOfExperiment ="Show me greatest";
 		TestingConsole tc = new TestingConsole(nameOfExperiment, 1, false, 0);
 		
 		int geneNumber = 0;
