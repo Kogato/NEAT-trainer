@@ -59,7 +59,7 @@ public class MySupervisedEvaluator implements iEvaluator {
 	
 	private void printValues(double[] values){
 		for (double d : values){
-			System.out.format("%.3f; ", d);
+			System.out.format("%.5f; ", d);
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class MySupervisedEvaluator implements iEvaluator {
 				 }
 			 }
 			 
-			organism.setFitness(Math.pow((numberOfOutputNodes - errorsum), 2));
+			organism.setFitness(Math.pow((numberOfTrainingSets - errorsum), 2));
 			organism.setError(errorsum);
 			
 		 } else {

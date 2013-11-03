@@ -11,11 +11,12 @@ import training.evaluators.MySupervisedEvaluator;
 public class TestingConsole extends Console {
 
 	public static void main(String[] args) {
-		String nameOfExperiment ="XOR";
+		String nameOfExperiment ="XOR 3 inputs";
 		TestingConsole tc = new TestingConsole(nameOfExperiment, 1, false, 0);
 		
 		int geneNumber = 0;
 		String genomeFileName = tc.winnerFolder + "\\" + nameOfExperiment + "_win " + geneNumber;
+		//String genomeFileName = tc.dataFolder + "\\TestGenome.txt";
 		tc.testOrganism(genomeFileName);
 	}
 	

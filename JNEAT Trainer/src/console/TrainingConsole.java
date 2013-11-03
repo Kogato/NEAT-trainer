@@ -22,7 +22,7 @@ public class TrainingConsole extends Console {
 
 
 	public static void main(String[] args) {
-		String nameOfExperiment = "XOR";
+		String nameOfExperiment = "XOR 3 inputs";
 		int maxNumberOfGenerations = 500;
 		boolean stopOnFirstGoodOrganism = true;
 		double errorThreshold = 0.1;
