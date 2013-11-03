@@ -8,14 +8,59 @@ import jneat.neuralNetwork.Network;
 
 
 public class MySupervisedEvaluator implements iEvaluator {
-	double[][] trainingSets;
-	double[][] expectedOutputs;
-	double threshold;
+	//Training parameters
+	private double[][] trainingSets;
+	private double[][] expectedOutputs;
+	private double threshold;
+	private int numberOfTrainingSets;
+	private double[][] actualOutputs;
+	
+	//Organism
+	private Network network;
+	private int networkDepth;
+	private Vector<NNode> outputNodes;
+	private int numberOfOutputNodes;
 	
 	public MySupervisedEvaluator(double[][] trainingSets, double[][] expectedOutputs, double threshold){
 		this.trainingSets=trainingSets;
 		this.expectedOutputs = expectedOutputs;
 		this.threshold = threshold;
+	}
+	
+	public void testOrganism(Organism organism){
+		
+		boolean success = runSimulation(organism);
+		
+		if (success){
+			for (int i = 0; i < numberOfTrainingSets; i++){
+				System.out.println();
+				System.out.println("Training set " + i);
+				
+				//Print inputs
+				double[] in = trainingSets[i];
+				System.out.print("Input:           ");
+				printValues(in);
+				System.out.println();
+				
+				//Print expected outputs								
+				double[] expOut = expectedOutputs[i];
+				System.out.print("Expected output: ");
+				printValues(expOut);
+				System.out.println();
+				
+				//Print actual outputs				
+				double[] actOut = actualOutputs[i];
+				System.out.print("Actual output:   ");
+				printValues(actOut);
+				System.out.println();				
+			}
+		}
+	}
+	
+	private void printValues(double[] values){
+		for (double d : values){
+			System.out.format("%.3f; ", d);
+		}
 	}
 	
 	/**
@@ -27,27 +72,7 @@ public class MySupervisedEvaluator implements iEvaluator {
 		 boolean success = false;
 		 double errorsum = 0.0;
 		 
-		 //Import objects from organism
-		 Network network = organism.net;
-		 int networkDepth = network.max_depth(); //The max depth of the network to be activated
-		 Vector<NNode> outputNodes = network.getOutputs();
-		 int numberOfOutputNodes = outputNodes.size();
-		 
-		 //Read input about training
-		 int numberOfTrainingSets = trainingSets.length;
-		 double[][] actualOutputs = new double[numberOfTrainingSets][numberOfOutputNodes]; //Stores the output from the training sets
-		 	  
-		 // for each training set, propagate signal .... and compute results
-		 for (int trainingSet = 0; trainingSet < numberOfTrainingSets; trainingSet++){
-			 //propagate input signal forward
-			 success = propagateSignal(network, networkDepth, trainingSets[trainingSet] );
-			 		 
-			//Read the output value			
-			for (int i = 0; i < outputNodes.size(); i++){
-				actualOutputs[trainingSet][i] = outputNodes.get(i).getActivation();
-			}
-			network.flush();
-		 }	  
+		 success = runSimulation(organism);
 	  
 		 //Calculate errors
 		 double[][] errors = new double[numberOfTrainingSets][numberOfOutputNodes];
@@ -97,6 +122,38 @@ public class MySupervisedEvaluator implements iEvaluator {
 		}
 		
 		return success;
+	 }
+	 
+	 private void readOrganism(Organism organism){
+		 network = organism.net;
+		 networkDepth = network.max_depth(); //The max depth of the network to be activated
+		 outputNodes = network.getOutputs();
+		 numberOfOutputNodes = outputNodes.size();
+	 }
+	 
+	 private boolean runSimulation(Organism organism){
+		 boolean success = false;
+		 		 
+		 //Import objects from organism
+		 readOrganism(organism);
+		 
+		 //Read input about training
+		 numberOfTrainingSets = trainingSets.length;
+		 actualOutputs = new double[numberOfTrainingSets][numberOfOutputNodes]; //Stores the output from the training sets
+		 	  
+		 // for each training set, propagate signal .... and compute results
+		 for (int trainingSet = 0; trainingSet < numberOfTrainingSets; trainingSet++){
+			 //propagate input signal forward
+			 success = propagateSignal(network, networkDepth, trainingSets[trainingSet] );
+			 		 
+			//Read the output value			
+			for (int i = 0; i < outputNodes.size(); i++){
+				actualOutputs[trainingSet][i] = outputNodes.get(i).getActivation();
+			}
+			network.flush();
+		 }	
+		 
+		 return success;
 	 }
 
 }
