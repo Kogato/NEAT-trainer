@@ -7,7 +7,7 @@ import jneat.neuralNetwork.NNode;
 import jneat.neuralNetwork.Network;
 
 
-public class MySupervisedEvaluator implements iEvaluator {
+public class MySupervisedEvaluator {
 	//Training parameters
 	private double[][] trainingSets;
 	private double[][] expectedOutputs;

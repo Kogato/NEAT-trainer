@@ -5,7 +5,6 @@ import java.util.StringTokenizer;
 import jNeatCommon.IOseq;
 import jneat.evolution.Organism;
 import jneat.neuralNetwork.Genome;
-import testing.XORTester;
 import training.evaluators.MySupervisedEvaluator;
 
 public class TestingConsole extends Console {

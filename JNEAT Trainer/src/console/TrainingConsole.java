@@ -1,15 +1,7 @@
 package console;
 
-import jNeatCommon.IOseq;
-
-import java.io.File;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 import training.Trainer;
 import training.evaluators.MySupervisedEvaluator;
-import training.evaluators.XOREvaluator;
 
 public class TrainingConsole extends Console {
 

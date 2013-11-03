@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import training.evaluators.MySupervisedEvaluator;
-import training.evaluators.iEvaluator;
 
 import jneat.Neat;
 import jneat.evolution.Organism;
